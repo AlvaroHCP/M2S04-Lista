@@ -2,7 +2,7 @@ package exercicio5.org.devinhouse.superherois;
 
 import exercicio5.org.devinhouse.superherois.cli.Display;
 import exercicio5.org.devinhouse.superherois.cli.MenuItems;
-import exercicio5.org.devinhouse.superherois.database.DataBase;
+import exercicio5.org.devinhouse.superherois.repository.PersonagemRepository;
 import exercicio5.org.devinhouse.superherois.model.Heroi;
 import exercicio5.org.devinhouse.superherois.model.Vilao;
 
@@ -37,7 +37,7 @@ public class Aplication {
                 String nomeVidaReal = scanner.nextLine();
                 System.out.println();
                 Heroi heroi = new Heroi(nome, superPoder, nomeVidaReal );
-                DataBase.cadastrarPersonagens(heroi);
+                PersonagemRepository.cadastrarPersonagens(heroi);
             }
             case CADASTRAR_VILAO -> {
                 System.out.println("Digite o Nome do Vilao");
@@ -50,14 +50,14 @@ public class Aplication {
                 int tempoDePrisao = scanner.nextInt();
                 System.out.println();
                 Vilao vilao = new Vilao(nome, superPoder, tempoDePrisao );
-                DataBase.cadastrarPersonagens(vilao);
+                PersonagemRepository.cadastrarPersonagens(vilao);
             }
             case LISTAR -> listaPersonagens(opcao);
         }
     }
     private void listaPersonagens(int numero){
         if(numero == MenuItems.LISTAR.codigo)
-            System.out.println(DataBase.getCadastroDePersonagens());
+            System.out.println(PersonagemRepository.getCadastroDePersonagens());
         Display.aguarde();
     }
 }

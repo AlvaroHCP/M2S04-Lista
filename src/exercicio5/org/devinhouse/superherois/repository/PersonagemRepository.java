@@ -1,9 +1,9 @@
-package exercicio5.org.devinhouse.superherois.database;
+package exercicio5.org.devinhouse.superherois.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase {
+public class PersonagemRepository {
     private static List cadastroDePersonagens = new ArrayList();
 
     public static void cadastrarPersonagens(Object o){
