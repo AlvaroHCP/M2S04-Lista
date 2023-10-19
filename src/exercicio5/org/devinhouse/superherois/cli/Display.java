@@ -1,5 +1,7 @@
 package exercicio5.org.devinhouse.superherois.cli;
 
+import exercicio5.org.devinhouse.superherois.exception.OpcaoInvalidaException;
+
 import java.util.Scanner;
 
 public class Display {
@@ -19,7 +21,7 @@ public class Display {
         scanner.nextLine();
     }
 
-    public static int recebeOpcaoUsuario(){
+    public static int recebeOpcaoUsuario() throws OpcaoInvalidaException {
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
         MenuItems operacao = MenuItems.obterOperacao(opcao);

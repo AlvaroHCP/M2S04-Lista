@@ -2,6 +2,7 @@ package exercicio5.org.devinhouse.superherois;
 
 import exercicio5.org.devinhouse.superherois.cli.Display;
 import exercicio5.org.devinhouse.superherois.cli.MenuItems;
+import exercicio5.org.devinhouse.superherois.exception.OpcaoInvalidaException;
 import exercicio5.org.devinhouse.superherois.repository.PersonagemRepository;
 import exercicio5.org.devinhouse.superherois.model.Heroi;
 import exercicio5.org.devinhouse.superherois.model.Vilao;
@@ -10,19 +11,27 @@ import java.util.Scanner;
 
 public class Aplication {
     public void run() {
-        int opcao;
+        int opcao = MenuItems.SAIR.codigo;
         boolean terminarPrograma;
         do {
             Display.exibeMenu();
-            opcao = Display.recebeOpcaoUsuario();
-            terminarPrograma = opcao != MenuItems.SAIR.codigo;
-            if(terminarPrograma)
-                Display.aguarde();
-            realizaOperacaoUsuario(opcao);
+            try {
+                opcao = Display.recebeOpcaoUsuario();
+            } catch (OpcaoInvalidaException e) {
+                System.out.print("\n" + e.getMessage());
+            }
+                terminarPrograma = opcao != MenuItems.SAIR.codigo;
+                if (terminarPrograma)
+                    Display.aguarde();
+            try {
+                realizaOperacaoUsuario(opcao);
+            } catch (OpcaoInvalidaException e) {
+                System.out.print("\n" + e.getMessage());
+            }
         } while(terminarPrograma);
     }
 
-    private void realizaOperacaoUsuario(int opcao){
+    private void realizaOperacaoUsuario(int opcao) throws OpcaoInvalidaException {
         MenuItems op = MenuItems.obterOperacao(opcao);
         Scanner scanner = new Scanner(System.in);
         switch(op){
