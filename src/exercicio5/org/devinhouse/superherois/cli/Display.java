@@ -23,7 +23,8 @@ public class Display {
         Scanner scanner = new Scanner(System.in);
         int opcao = scanner.nextInt();
         MenuItems operacao = MenuItems.obterOperacao(opcao);
-        System.out.println("\n" + operacao);
+        if(operacao != null)
+            System.out.println("\n" + operacao);
         return opcao;
     }
 
